@@ -10,8 +10,9 @@ public class OriginalScore implements GameScore {
 	 * @throws 
 	 */
 	public int calculateScore(int correctCount, int incorrectCount) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		if(correctCount == 0 && incorrectCount <= 10) result = 100-(incorrectCount * 10);
+		return result;
 	}
 
 }
