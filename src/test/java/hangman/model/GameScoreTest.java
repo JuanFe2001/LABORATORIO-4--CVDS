@@ -55,4 +55,49 @@ public class GameScoreTest{
         }
 	}
 	
+	@Test 
+	public void testCalculateBonusWithValidAndInvalidInputs() throws HangmanExceptions{
+		BonusScore score = new BonusScore();
+		// Pruebas con entradas válidas
+
+        assertEquals(0, score.calculateScore(0, 0));
+        assertEquals(0, score.calculateScore(0, 1));
+        assertEquals(0, score.calculateScore(0, 2));
+        assertEquals(0, score.calculateScore(0, 3));
+        assertEquals(0, score.calculateScore(0, 4));
+        assertEquals(0, score.calculateScore(0, 5));
+        assertEquals(0, score.calculateScore(0, 6));
+        assertEquals(0, score.calculateScore(0, 7));
+        assertEquals(0, score.calculateScore(0, 8));
+        assertEquals(0, score.calculateScore(0, 9));
+        assertEquals(0, score.calculateScore(0, 10));
+        assertEquals(10, score.calculateScore(2, 2));
+        assertEquals(25, score.calculateScore(5, 5));
+        assertEquals(40, score.calculateScore(8, 8));
+        assertEquals(50, score.calculateScore(10, 10));
+        assertEquals(100, score.calculateScore(10, 0));
+        
+        // Pruebas con entradas inválidas
+        try {
+            score.calculateScore(-1, 0);
+            fail("No se lanzó la excepción esperada");
+        } catch (HangmanExceptions e) {
+            assertEquals("Los parámetros no pueden ser negativos.", e.getMessage());
+        }
+        
+        try {
+            score.calculateScore(0, -1);
+            fail("No se lanzó la excepción esperada");
+        } catch (HangmanExceptions e) {
+            assertEquals("Los parámetros no pueden ser negativos.", e.getMessage());
+        }
+        
+        try {
+            score.calculateScore(-1, -1);
+            fail("No se lanzó la excepción esperada");
+        } catch (HangmanExceptions e) {
+            assertEquals("Los parámetros no pueden ser negativos.", e.getMessage());
+        }
+	}
+	
 }
